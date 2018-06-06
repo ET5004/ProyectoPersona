@@ -20,21 +20,36 @@ public class ProyectoPersona {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        Persona [] personas = new Persona[10];
+        for(int i = 0; i < personas.length; i++){
+            personas[i] = personaDesdeTeclado(scan);
+            System.out.println(personas[i]);
+        }
+    }   
+      
+    public static LocalDate fechaDesdeTeclado(Scanner scan){
+        return LocalDate.of(scan.nextInt(), scan.nextInt(), scan.nextInt());
+    }
+        
+    public static Persona personaDesdeTeclado(Scanner scan){
         Persona persona = new Persona();
-        persona.setNombre("Homero");
+        System.out.print("Nombre: ");
+        persona.setNombre(scan.next());
         Domicilio domicilio = new Domicilio();
         domicilio.setPais("Argentina");
         domicilio.setCiudad("Tandil");
-        domicilio.setCalle("Av. Siempreviva");
-        domicilio.setAltura(751);
+        
+        System.out.print("Domicilio (Calle altura): ");
+        domicilio.setCalle(scan.next());
+        domicilio.setAltura(scan.nextInt());
         persona.setDomicilio(domicilio);
-        LocalDate fechaNac = LocalDate.of(1972, Month.FEBRUARY, 28);
-        persona.setFechaNacimiento(fechaNac);
+        System.out.print("Nacimiento (Año mes dia): ");
+        persona.setFechaNacimiento(fechaDesdeTeclado(scan));
         
-        System.out.println(persona);
-        
-        
-    }   
+        return persona;
+    }
     
     
     
