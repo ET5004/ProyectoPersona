@@ -27,7 +27,25 @@ public class ProyectoPersona {
             personas[i] = personaDesdeTeclado(scan);
             System.out.println(personas[i]);
         }
-    }   
+    }
+    
+    public static float promedioEdades(Persona [] personas){
+        float suma = 0;
+        for(int i = 0; i < personas.length; i++){
+            suma+=personas[i].getEdad();
+        }
+        return suma / personas.length;
+    }
+    
+    public static Persona obtenerMayor(Persona [] personas){
+        Persona mayor = personas[0];
+        for(int i = 1; i < personas.length; i++){
+            if(mayor.getEdad()>personas[i].getEdad()){
+                mayor = personas[i];
+            }
+        }
+        return mayor;
+    }
       
     public static LocalDate fechaDesdeTeclado(Scanner scan){
         return LocalDate.of(scan.nextInt(), scan.nextInt(), scan.nextInt());
